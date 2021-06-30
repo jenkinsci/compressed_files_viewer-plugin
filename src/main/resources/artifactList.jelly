@@ -1,0 +1,242 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <link  type="text/css" rel="stylesheet" href="${rootURL}/plugin/compressed_files_viewer/css/test.css"/>
+	<script type="text/javascript" src="${rootURL}/plugin/compressed_files_viewer/js/test.js"/>
+		<j:set var="customBaseURL" value="${it.getCustomBaseURL()}" />
+		<j:set var="artifacts" value="${it.run.getArtifacts()}" />
+		<j:if test="${!empty(artifacts)}">
+		  <h1>Artifacts of ${it.getJobName()} #${it.run.getId()}</h1>
+		  <t:summary icon="package.png">
+			<span><b>  Number of artifacts: ${it.run.getArtifacts().size()}</b></span>
+			<table class="fileList" id="toptable">
+				<j:forEach var="f" items="${artifacts}">
+					<j:choose>
+						<j:when test="${it.isCompressed(f.displayPath)}">
+							<tr>
+								<td>
+									<img src="${rootURL}/plugin/compressed_files_viewer/winrar.png" style="width: 16px; height: 16px; "/>
+								</td>
+							  <td>
+								<a href="${customBaseURL}artifact/${f.href}" download="${f.displayPath}">${f.displayPath}</a>
+							  </td>
+							  <td class="fileSize">
+								${h.humanReadableByteSize(f.getFileSize())}
+							  </td>
+							  <td class="topParent">
+								<button class="dropbtn">Browse</button>
+							  </td>
+							</tr>
+						</j:when>
+						<j:otherwise>
+							<tr>
+							  <td>
+								<l:icon class="icon-text icon-sm"/>
+							  </td>
+							  <td>
+								<a href="${customBaseURL}artifact/${f.href}" download="${f.displayPath}">${f.displayPath}</a>
+							  </td>
+							  <td class="fileSize">
+								${h.humanReadableByteSize(f.getFileSize())}
+							  </td>
+							  <td class="topView">
+								<a href="${customBaseURL}artifact/${f.href}/*view*/">view</a>
+							  </td>
+							</tr>
+						</j:otherwise>
+					</j:choose>
+					<j:if test="${it.isCompressed(f.displayPath)}">
+						<tr class="topNested">
+							<td colspan="5">
+								<table class="innerTable">
+									<j:forEach var="file" items="${it.allExtractedFiles.get(f.displayPath).keySet()}">
+										<j:choose>
+											<j:when test="${file.isCompressed()}">
+												<tr>
+												  <td class="iconNested">
+													
+												  </td>
+												  <td>
+													<img src="${rootURL}/plugin/compressed_files_viewer/winrar.png" style="width: 16px; height: 16px; "/>
+												  </td>
+												  <td>
+													<a href="${file.url}">${file.getName()}</a>
+												  </td>
+												  <td class="fileSize">
+													${h.humanReadableByteSize(file.getSize())}
+												  </td>
+												  <td class="parent">
+													<button class="dropbtn">Browse</button>
+												  </td>
+												</tr>
+												<tr class="nested">
+													<td colspan="5">
+														<table class="lastInnerTable">
+															<j:forEach var="endFile" items="${it.allExtractedFiles.get(f.displayPath).get(file)}">
+																<tr>
+																  <td class="lastIconNested">
+																	
+																  </td>
+																  <td>
+																	<l:icon class="icon-text icon-sm"/>
+																  </td>
+																  <td>
+																	<a href="${endFile.url}">${endFile.getName()}</a>
+																  </td>
+																  <td class="fileSize">
+																	${h.humanReadableByteSize(endFile.getSize())}
+																  </td>
+																  <td class="view">
+																	<a href="${endFile.url}">view</a>
+																  </td>
+																</tr>
+															</j:forEach>
+														</table>
+													</td>
+												</tr>
+											</j:when>
+											<j:when test="${file.isDirectory()}">
+												<tr>
+												  <td class="iconNested">
+													
+												  </td>
+												  <td>
+													<l:icon class="icon-folder icon-sm"/>
+												  </td>
+												  <td>
+													<a>${file.getName()}</a>
+												  </td>
+												  <td class="fileSize">
+													
+												  </td>
+												  <td class="parent">
+													<button class="dropbtn">Browse</button>
+												  </td>
+												</tr>
+												<tr class="nested">
+													<td colspan="5">
+														<table class="lastInnerTable">
+															<j:forEach var="endFile" items="${it.sorted(it.allExtractedFiles.get(f.displayPath).get(file))}">
+																<tr>
+																  <td class="lastIconNested">
+													
+																  </td>
+																  <td>
+																	<l:icon class="icon-text icon-sm"/>
+																  </td>
+																  <td>
+																	<a href="${endFile.url}">${endFile.getName()}</a>
+																  </td>
+																  <td class="fileSize">
+																	${h.humanReadableByteSize(endFile.getSize())}
+																  </td>
+																  <td class="view">
+																	<a href="${endFile.url}">view</a>
+																  </td>
+																</tr>
+															</j:forEach>
+														</table>
+													</td>
+												</tr>
+											</j:when>
+											<j:otherwise>
+												<tr>
+												  <td class="iconNested">
+													
+												  </td>
+												  <td>
+													<l:icon class="icon-text icon-sm"/>
+												  </td>
+												  <td>
+													<a href="${file.url}">${file.getName()}</a>
+												  </td>
+												  <td class="fileSize">
+													${h.humanReadableByteSize(file.getSize())}
+												  </td>
+												  <td class="view">
+													<a href="${file.url}">view</a>
+												  </td>
+												</tr>
+											</j:otherwise>
+										</j:choose>
+									</j:forEach>
+								</table>
+							</td>
+						</tr>
+					</j:if>
+			    </j:forEach>
+			</table>
+
+			<script language="javascript">
+				/*<![CDATA[*/
+					var toggler = document.getElementsByClassName("topParent");
+					var arr = [];
+					var i;
+					for (i = 0; i < toggler.length; i++) {
+						//console.log(toggler[i].parentElement.rowIndex);
+						arr[i] = toggler[i].parentElement.rowIndex;
+					}
+					for (i = 0; i < toggler.length; i++) {
+					  toggler[i].addEventListener("click", function() {
+						this.parentElement.parentElement.querySelectorAll(".topNested")[arr.indexOf(this.parentElement.rowIndex)].classList.toggle("show");
+						this.firstElementChild.classList.toggle("dropbtn-down");
+					  });
+					}
+					
+					var toggler1 = document.getElementsByClassName("parent");
+					var map = new Map();
+					
+					var j = 0;
+					arr1 = [];
+					arr2 = [];
+					
+					for (j = 0; j < toggler1.length; j++) {
+						arr1[j] = toggler1[j].parentElement.parentElement.parentElement.parentElement.parentElement.rowIndex;
+						arr2[j] = toggler1[j].parentElement.rowIndex;
+					}
+					
+					for (j = 0; j < toggler1.length; j++) {
+					  toggler1[j].addEventListener("click", function() {
+						parentRow = this.parentElement.parentElement.parentElement.parentElement.parentElement.rowIndex;
+						lastarr = arr2.slice(arr1.indexOf(parentRow), arr2.length);
+						this.parentElement.parentElement.querySelectorAll(".nested")[lastarr.indexOf(this.parentElement.rowIndex)].classList.toggle("show");
+						this.firstElementChild.classList.toggle("dropbtn-down");
+					  });
+					}
+					
+					var viewlinks = document.getElementsByClassName("view");
+					for (j = 0; j < viewlinks.length; j++) {
+						viewlinks[j].firstElementChild.onclick = function() {
+							var textArea = document.createElement("textarea");
+							textArea.value = this.getAttribute("href");
+							document.body.appendChild(textArea);
+							textArea.select();
+							document.execCommand("copy");
+							textArea.remove();
+							var newTab = window.open("");	
+							newTab.document.write("<h2>Paste and go in the search box ⇧</h2>");
+						};
+					}
+					
+					
+					
+					
+					
+				/*]]>*/			
+				
+			</script>
+			
+		  </t:summary> 
+		</j:if>
+		<br/>
+		<form method="get" action="${customBaseURL}artifact/artifact/*zip*/archive.zip">
+			<button type="submit" onclick="${it.startConnection()}" class="btn">               
+			<img  src="${rootURL}/plugin/compressed_files_viewer/download.png" style="width: 24px; height: 24px; "/>
+			<span style="color:gray"><b>  Artifacts in a zip</b></span>
+		</button>
+		</form>
+		<br/>
+		<applet code = "io.jenkins.plugins.compressedfilesviewer.CompressedFilesViewerApplet.class" archive="CompressedFilesViewerApplet.jar" codebase="${customBaseURL}artifact/artifact/" width = "120" height = "60">
+		<br/>
+		</applet>
+
+</j:jelly>

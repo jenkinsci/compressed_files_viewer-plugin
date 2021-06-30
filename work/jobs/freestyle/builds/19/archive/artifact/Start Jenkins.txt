@@ -1,0 +1,2 @@
+cd C:\Users\LENOVO\Downloads
+java -jar jenkins.war --httpPort=8083

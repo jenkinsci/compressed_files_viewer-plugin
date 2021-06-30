@@ -1,0 +1,80 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@2.39">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+  </actions>
+  <queueId>4</queueId>
+  <timestamp>1599238267899</timestamp>
+  <startTime>1599238267929</startTime>
+  <result>FAILURE</result>
+  <duration>1084</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>FAILURE</result>
+    <script>node {
+   def mvnHome
+    // for display purposes
+    // Get some code from a GitHub repository
+    git &apos;https://github.com/jglick/simple-maven-project-with-tests.git&apos;
+    // Get the Maven tool.
+    // ** NOTE: This &apos;M3&apos; Maven tool must be configured
+    // **       in the global configuration.           
+    mvnHome = tool &apos;M3&apos;
+    
+    
+    // Run the maven build
+    withEnv([&quot;MVN_HOME=$mvnHome&quot;]) {
+     if (isUnix()) {
+        sh &apos;&quot;$MVN_HOME/bin/mvn&quot; -Dmaven.test.failure.ignore clean package&apos;
+     } else {
+        bat(/&quot;%MVN_HOME%\bin\mvn&quot; -Dmaven.test.failure.ignore clean package/)
+     }
+    }
+    
+    
+    junit &apos;**/target/surefire-reports/TEST-*.xml&apos;
+    archiveArtifacts &apos;target/*.jar&apos;
+
+}
+</script>
+    <loadedScripts class="map"/>
+    <durabilityHint>MAX_SURVIVABILITY</durabilityHint>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>715298700</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>6435800</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>922710900</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>18010500</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>17940600</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>7</iota>
+    <head>1:7</head>
+    <done>true</done>
+    <resumeBlocked>false</resumeBlocked>
+  </execution>
+  <completed>true</completed>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>

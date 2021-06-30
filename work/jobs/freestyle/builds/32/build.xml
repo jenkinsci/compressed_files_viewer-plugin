@@ -1,0 +1,33 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause/>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <io.jenkins.plugins.sample.HelloWorldAction plugin="compressed_files_viewer@1.0-SNAPSHOT">
+      <name>Hi bitches</name>
+    </io.jenkins.plugins.sample.HelloWorldAction>
+    <io.jenkins.plugins.sample.CustomAction plugin="compressed_files_viewer@1.0-SNAPSHOT">
+      <allExtractedFiles/>
+      <test>101 bytes</test>
+      <iamtrue>false</iamtrue>
+    </io.jenkins.plugins.sample.CustomAction>
+  </actions>
+  <queueId>1</queueId>
+  <timestamp>1600119567850</timestamp>
+  <startTime>1600119567922</startTime>
+  <result>SUCCESS</result>
+  <duration>1300</duration>
+  <charset>windows-1256</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>D:\Learn\Jenkins\demo2-plugin\work\workspace\freestyle</workspace>
+  <hudsonVersion>2.235.1</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>
