@@ -7,6 +7,7 @@ This Jenkins plugin allows you to view compressed files in the artifacts list. T
 ## Requirements
  - Java 8 or lower(for applets support)
  - <a href="https://chrome.google.com/webstore/detail/ie-tab/hehijbfgiekmjfkfjpbkbammjbdenadd">IE Tab extension</a>
+ - Chrome browser
 
 ## Set up the applet
 <ol>
