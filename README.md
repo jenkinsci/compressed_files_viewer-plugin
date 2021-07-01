@@ -32,7 +32,7 @@ This Jenkins plugin allows you to view compressed files in the artifacts list. T
   </tr>
   <tr>
     <td><img src="pics/3.png"/></td>
-    <td><img stylesrc="pics/4.png"/></td>
+    <td><img src="pics/4.png"/></td>
   </tr>
   <tr>
     <th>Grant access to applet to extract downloaded archive</th>
