@@ -2,12 +2,19 @@
 
 ## Introduction
 
-TODO Describe what your plugin does here
+This Jenkins plugin allows you to view compressed files in artifacts list. The decompression process is performed in the client side for less labor on the server.
 
 ## Getting started
+# Requirements
+Java 8 or lower(for applets support)
+IE Tab extension: https://chrome.google.com/webstore/detail/ie-tab/hehijbfgiekmjfkfjpbkbammjbdenadd
 
-TODO Tell users how to configure your plugin here, include screenshots, pipeline examples and 
-configuration-as-code examples.
+# Set up the applet
+  1- Put/upload CompressedFilesViewerApplet.jar and add its url in codebase attribute inside <applet> tag in artifactList.jelly under src\main\resources directory.
+  2- Go to control panel, open Java --> Security:
+
+# How to use
+
 
 
 ## Contributing
