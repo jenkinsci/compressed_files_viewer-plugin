@@ -1,0 +1,1 @@
+main.js contains the generated code from index.js using webpack.

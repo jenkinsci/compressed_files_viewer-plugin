@@ -1,0 +1,74 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <link  type="text/css" rel="stylesheet" href="${rootURL}/plugin/compressed_files_viewer/css/style.css"/>
+		<j:set var="customBaseURL" value="${it.getCustomBaseURL()}" />
+		<j:set var="artifacts" value="${it.run.getArtifacts()}" />
+		<j:if test="${!empty(artifacts)}">
+		  <h1>Artifacts of ${it.getJobName()} #${it.run.getId()}</h1>
+		  <t:summary icon="package.png">
+			<span><b>  Number of artifacts: ${it.run.getArtifacts().size()}</b></span>
+			<table class="fileList">
+				<j:forEach var="f" items="${artifacts}">
+					<j:choose>
+						<j:when test="${it.isCompressed(f.displayPath)}">
+							<tr>
+							  <td>
+								<img src="${rootURL}/plugin/compressed_files_viewer/winrar.png"/>
+							  </td>
+							  <td>
+								<a href="${customBaseURL}artifact/${f.href}" download="${f.displayPath}">${f.displayPath}</a>
+							  </td>
+							  <td class="fileSize">
+								${h.humanReadableByteSize(f.getFileSize())}
+							  </td>
+							  <td class="topParent">
+								<button class="dropbtn">Browse</button>
+							  </td>
+							</tr>
+						</j:when>
+						<j:otherwise>
+							<tr>
+							  <td>
+								<l:icon class="icon-text icon-sm"/>
+							  </td>
+							  <td>
+								<a href="${customBaseURL}artifact/${f.href}" download="${f.displayPath}">${f.displayPath}</a>
+							  </td>
+							  <td class="fileSize">
+								${h.humanReadableByteSize(f.getFileSize())}
+							  </td>
+							  <td class="topView">
+								<a href="${customBaseURL}artifact/${f.href}/*view*/">view</a>
+							  </td>
+							</tr>
+						</j:otherwise>
+					</j:choose>
+					<j:if test="${it.isCompressed(f.displayPath)}">
+						<tr class="topNested">
+							<td colspan="5">
+								<table class="innerTable">
+									
+								</table>
+							</td>
+						</tr>
+					</j:if>
+			    </j:forEach>
+			</table>
+			
+		  </t:summary> 
+		</j:if>
+		<br/>
+		<form method="get" id="formId" action="${customBaseURL}artifact/artifact/*zip*/archive.zip">
+			<button type="submit" onclick="${it.startConnection()}" class="btn">               
+				<img  src="${rootURL}/plugin/compressed_files_viewer/download.png" style="width: 24px; height: 24px; "/>
+				<span style="color:gray"><b>  Artifacts in a zip</b></span>
+			</button>
+			<span id="loadingText" style="color:gray"><b>  Loading and extracting artifacts...</b></span>
+		</form>
+		
+		<p class="hiddenData">${rootURL}</p>
+		<p class="hiddenData">${customBaseURL}artifact/artifact/*zip*/archive.zip</p>
+		
+		<script type="text/javascript" src="${rootURL}/plugin/compressed_files_viewer/js/main.js"/>
+
+</j:jelly>

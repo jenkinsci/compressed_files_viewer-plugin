@@ -1,3 +1,0 @@
-cd D:\Learn\Jenkins\demo2-plugin
-d:
-mvn hpi:run
