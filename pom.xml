@@ -40,7 +40,8 @@ SOFTWARE.
         <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
         <jenkins.version>2.277.1</jenkins.version>
         <java.level>8</java.level>
-        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>    </properties>
+        <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
+    </properties>
     <name>Compressed Files Viewer Plugin</name>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
 
@@ -81,11 +82,6 @@ SOFTWARE.
             <artifactId>workflow-durable-task-step</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.junrar</groupId>
-            <artifactId>junrar</artifactId>
-            <version>0.7</version>
-        </dependency>
     </dependencies>
 
     <licenses>
@@ -94,14 +90,13 @@ SOFTWARE.
             <url>https://opensource.org/licenses/MIT</url>
         </license>
     </licenses>
-    <!-- If you want this to appear on the plugin site page:
+
     <developers>
       <developer>
-        <id>bhacker</id>
-        <name>Bob Q. Hacker</name>
-        <email>bhacker@nowhere.net</email>
+        <name>Ahmed Sellami</name>
+        <email>ahmedsellami526@gmail.com</email>
       </developer>
-    </developers> -->
+    </developers>
 
     <scm>
         <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>

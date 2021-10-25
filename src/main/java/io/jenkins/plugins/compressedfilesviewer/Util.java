@@ -8,7 +8,7 @@ public final class Util {
 	public static boolean isCompressed(String s) {
 		if (!s.contains(".")) return false;
     	s = s.substring(s.indexOf("."));
-		List extensionsList = new ArrayList<String>(Arrays.asList(".zip", ".jar")); 
+		List<String> extensionsList = new ArrayList<>(Arrays.asList(".zip", ".jar", ".rar", ".7zip", ".gzip"));
 		return extensionsList.contains(s);
     }
 }

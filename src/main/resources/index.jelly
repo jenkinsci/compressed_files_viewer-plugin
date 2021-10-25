@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    TODO
+    This Jenkins plugin allows you to browse compressed files in the artifacts list. The decompression process is performed on the client-side for less labor on the server.
 </div>

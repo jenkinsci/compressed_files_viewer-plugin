@@ -12,7 +12,7 @@
         </l:side-panel>
         <l:main-panel>
 			
-			<st:include page="/artifactList.jelly"/>
+			<st:include page="/io/jenkins/plugins/compressedfilesviewer/ViewerAction/artifactsList.jelly"/>
         </l:main-panel>
     </l:layout>
 
