@@ -1,21 +1,8 @@
-# compressed_files_viewer
+# Compressed Files Viewer
 
 ## Introduction
 
-This Jenkins plugin allows you to view compressed files in the artifacts list. The decompression process is performed on the client-side for less labor on the server.
-
-## Requirements
- - Java 8 or lower(for applets support)
- - <a href="https://chrome.google.com/webstore/detail/ie-tab/hehijbfgiekmjfkfjpbkbammjbdenadd">IE Tab extension</a>
- - Chrome browser
-
-## Set up the applet
-<ol>
-  <li>Put/upload CompressedFilesViewerApplet.jar and add its url in codebase attribute inside <applet> tag in artifactList.jelly under src\main\resources directory.</li>
-  <li>Go to control panel, open Java --> Security, and check this:</li>
-</ol>
-<br/>
-<img src="pics/applet config java.png"/>
+This Jenkins plugin allows you to browse compressed files in the artifacts list. The decompression process is performed on the client-side for less labor on the server.
 
 ## How to use
 <table style="width:100%">
@@ -28,28 +15,8 @@ This Jenkins plugin allows you to view compressed files in the artifacts list. T
     <td><img src="pics/2.png"/></td>
   </tr>
   <tr>
-    <th>Download artifacts in a zip</th>
-    <th>Reload this page with IE rendering to run the applet</th>
-  </tr>
-  <tr>
-    <td><img src="pics/3.png"/></td>
-    <td><img src="pics/4.png"/></td>
-  </tr>
-  <tr>
-    <th>Grant access to applet to extract downloaded archive</th>
-    <th>A message after applet work</th>
-  </tr>
-  <tr>
-    <td><img src="pics/5.png"/></td>
-    <td><img src="pics/6.png"/></td>
-  </tr>
-  <tr>
-    <th>Close the IE rendering</th>
-    <th>Now you can browse compressed files</th>
-  </tr>
-  <tr>
-    <td><img src="pics/7.png"/></td>
-    <td><img src="pics/8.png"/></td>
+    <td colspan="2">Now, if you are running jenkins instance in a server, you will wait a little bit(depending on the size of the artifacts) until the compressed files are extracted. 
+Otherwise, if the jenkins instance is running in localhost, the artifacts will be downloaded and you won't be able to use the plugin since Javascript can't have access to local files.</td>
   </tr>
 </table>
 
