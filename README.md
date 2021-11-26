@@ -7,12 +7,20 @@ This Jenkins plugin allows you to browse compressed files in the artifacts list.
 ## How to use
 <table style="width:100%">
   <tr>
+    <th>Add the plugin to the freestyle job</th>
     <th>Select artifacts</th>
-    <th>Tap the plugin button</th>
   </tr>
   <tr>
+    <td><img src="pics/first.png"/></td>
     <td><img src="pics/1.png"/></td>
+  </tr>
+  <tr>
+    <th>Tap the plugin button</th>
+    <th>Browse your compressed files</th>
+  </tr>
+  <tr>
     <td><img src="pics/2.png"/></td>
+    <td><img src="pics/final.png"/></td>
   </tr>
   <tr>
     <td colspan="2">Now, if you are running jenkins instance in a server, you will wait a little bit(depending on the size of the artifacts) until the compressed files are extracted. 
