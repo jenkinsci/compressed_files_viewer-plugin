@@ -124,8 +124,8 @@ function isCompressed(fileName) {
 	if (fileName.indexOf(".") == -1) {
 		return false;
 	} else {
-		const commpressionExt = ['zip', 'rar', 'jar', '7zip', 'gzip'];
-		const extension = fileName.substring(fileName.indexOf(".") + 1);
+		const commpressionExt = ['zip', 'jar'];
+		const extension = fileName.substring(fileName.indexOf(".") + 1).toLowerCase();
 		return commpressionExt.includes(extension);
 	}
 }
