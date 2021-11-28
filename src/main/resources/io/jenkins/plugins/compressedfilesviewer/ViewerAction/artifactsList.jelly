@@ -58,7 +58,7 @@
 		  </t:summary> 
 		</j:if>
 		<br/>
-		<form method="get" id="formId" action="${customBaseURL}artifact/artifact/*zip*/archive.zip">
+		<form method="get" id="formId" action="${customBaseURL}artifact/*zip*/archive.zip">
 			<button type="submit" onclick="${it.startConnection()}" class="btn">               
 				<img  src="${rootURL}/plugin/compressed_files_viewer/download.png" style="width: 24px; height: 24px; "/>
 				<span style="color:gray"><b>  Artifacts in a zip</b></span>
@@ -67,7 +67,7 @@
 		</form>
 		
 		<p class="hiddenData">${rootURL}</p>
-		<p class="hiddenData">${customBaseURL}artifact/artifact/*zip*/archive.zip</p>
+		<p class="hiddenData">${customBaseURL}artifact/*zip*/archive.zip</p>
 		
 		<script type="text/javascript" src="${rootURL}/plugin/compressed_files_viewer/js/main.js"/>
 

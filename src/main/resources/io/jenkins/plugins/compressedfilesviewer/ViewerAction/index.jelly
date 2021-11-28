@@ -1,17 +1,16 @@
 <j:jelly 
 	xmlns:j="jelly:core"
 	xmlns:d="jelly:define"
-        xmlns:l="/lib/layout"
-        xmlns:t="/lib/hudson"
+    xmlns:l="/lib/layout"
+    xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
-        xmlns:st="jelly:stapler">
+    xmlns:st="jelly:stapler">
 
-    <l:layout xmlns:plugin="/hudson/plugins/javancss/tags" css="/plugin/javancss/css/style.css">
+    <l:layout>
         <l:side-panel> 
             <st:include page="sidepanel.jelly" it="${it.run}" optional="true" /> 
         </l:side-panel>
         <l:main-panel>
-			
 			<st:include page="/io/jenkins/plugins/compressedfilesviewer/ViewerAction/artifactsList.jelly"/>
         </l:main-panel>
     </l:layout>
