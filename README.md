@@ -24,7 +24,7 @@ This Jenkins plugin allows you to browse compressed files in the artifacts list.
   </tr>
   <tr>
     <td colspan="2">Now, if you are running jenkins instance in a server, you will wait a little bit(depending on the size of the artifacts) until the compressed files are extracted.
-Otherwise, if the jenkins instance is running in localhost, the plugin may or may not work, in the latter the artifacts will be downloaded.</td>
+Otherwise, if the jenkins instance is running in localhost, the plugin may or may not work. IF the latter occured, the artifacts will be downloaded.</td>
   </tr>
 </table>
 
