@@ -120,6 +120,8 @@ xhr.onerror = function(e) {
 
 xhr.send();
 
+const textareaStyle = "padding: 1em; border: 2px solid transparent; outline: none; width: 100%; height: 100%;"
+
 function isCompressed(fileName) {
 	if (fileName.indexOf(".") == -1) {
 		return false;
@@ -136,6 +138,17 @@ function isFile(fileName) {
 
 function isFolder(fileName) {
 	return fileName.charAt(fileName.length - 1) == '/';
+}
+
+function viewBlob(blob, name) {
+	blob.text().then(text => {
+		var newTab = window.open("")
+		setTimeout(function () {
+			newTab.document.title = name;
+		}, 100);
+		newTab.document.write("<textarea readonly style='" + textareaStyle + "'>" + text + "</textarea>")
+		newTab.document.close()
+	})
 }
 
 function insertExtractedFileRow(table, entry) {
@@ -173,7 +186,7 @@ function insertExtractedFileRow(table, entry) {
 		link.href = "#";
 		link.innerText = 'view';
 		link.onclick = function() {
-			window.open(URL.createObjectURL(entry.children[0].blob))
+			viewBlob(entry.children[0].blob, entry.children[0].name)
 		}
 		td4.appendChild(link);
 	} else {
@@ -209,7 +222,7 @@ function insertExtractedFileInFolderRow(table, file, folderName) {
 	link.href = "#";
 	link.innerText = 'view';
 	link.onclick = function() {
-		window.open(URL.createObjectURL(file.blob))
+		viewBlob(file.blob, file.name)
 	}
 	td4.appendChild(link);
 }
