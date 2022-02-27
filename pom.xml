@@ -31,7 +31,7 @@ SOFTWARE.
     </parent>
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>compressed_files_viewer</artifactId>
-    <version>999999</version>
+    <version>${changelist}</version>
     <packaging>hpi</packaging>
     <properties>
         <changelist>999999-SNAPSHOT</changelist>
