@@ -31,11 +31,10 @@ SOFTWARE.
     </parent>
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>compressed_files_viewer</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>${changelist}</version>
     <packaging>hpi</packaging>
     <properties>
-        <revision>1.0</revision>
-        <changelist>-SNAPSHOT</changelist>
+        <changelist>999999-SNAPSHOT</changelist>
 
         <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
         <jenkins.version>2.277.1</jenkins.version>
