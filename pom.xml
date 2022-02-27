@@ -26,18 +26,19 @@ SOFTWARE.
     <parent>
         <groupId>org.jenkins-ci.plugins</groupId>
         <artifactId>plugin</artifactId>
-        <version>4.4</version>
+        <version>4.36</version>
         <relativePath />
     </parent>
+
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>compressed_files_viewer</artifactId>
-    <version>1.0.0</version>
+    <version>${changelist}</version>
     <packaging>hpi</packaging>
     <properties>
         <changelist>999999-SNAPSHOT</changelist>
 
         <!-- Baseline Jenkins version you use to build the plugin. Users must have this version or newer to run. -->
-        <jenkins.version>2.277.1</jenkins.version>
+        <jenkins.version>2.277.4</jenkins.version>
         <java.level>8</java.level>
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     </properties>
@@ -50,7 +51,7 @@ SOFTWARE.
                 <!-- Pick up common dependencies for the selected LTS line: https://github.com/jenkinsci/bom#usage -->
                 <groupId>io.jenkins.tools.bom</groupId>
                 <artifactId>bom-2.277.x</artifactId>
-                <version>25</version>
+                <version>984.vb5eaac999a7e</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -101,7 +102,7 @@ SOFTWARE.
         <connection>scm:git:git://github.com/${gitHubRepo}.git</connection>
         <developerConnection>scm:git:git@github.com:${gitHubRepo}.git</developerConnection>
         <url>https://github.com/${gitHubRepo}</url>
-        <tag>1.0.0</tag>
+        <tag>${scmTag}</tag>
     </scm>
 
     <repositories>
